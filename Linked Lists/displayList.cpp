@@ -30,20 +30,22 @@ void display(struct Node *p) {
         printf("%d ", p->data);
         p = p->next;
     }
-
-    // Recursive method
-    
-    // if(p != NULL) {
-    //     printf("%d ", p->data);
-    //     display(p->next);
-    // }
 }
 
-void reverseDisplay(struct Node *p) {
+void RDisplay(struct Node *p) {
     // Recursive method
 
     if (p != NULL) {
-        reverseDisplay(p->next);
+        printf("%d ", p->data);
+        display(p->next);
+    }
+}
+
+void reverseRDisplay(struct Node *p) {
+    // Recursive method to print in reverse
+
+    if (p != NULL) {
+        reverseRDisplay(p->next);
         printf("%d ", p->data);
     }
 }
