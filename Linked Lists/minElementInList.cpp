@@ -23,24 +23,24 @@ void create(int A[], int n) {
     }
 }
 
-int max(struct Node *p) {
-    int m = INT32_MIN;
+int min(struct Node *p) {
+    int m = INT32_MAX;
     while(p) {
-        if(p->data > m) {
+        if(m > p->data)
             m = p->data;
-        }
+        
         p = p->next;
     }
     return m;
 }
 
-int Rmax(struct Node *p) {
+int Rmin(struct Node *p) {
     int x = 0;
-    if(p == 0)
-        return INT32_MIN;
+    if(p == 0) 
+        return INT32_MAX;
     else {
-        x = max(p->next);
-        if(x > p->data)
+        x = Rmin(p->next);
+        if(x < p->data)
             return x;
         else
             return p->data;
@@ -48,17 +48,18 @@ int Rmax(struct Node *p) {
 
     // int x = 0;
     // if (p == 0)
-    //     return 0;
+    //     return INT32_MAX;
     
-    // x = Rmax(p->next);
-    // return x > p->data ? x : p->data;
+    // x = Rmin(p->next);
+    // return x < p->data ? x : p->data;    
 }
 
 int main() {
-    int A[] = {3,5,7,9,10,11};
+    int A[] = {3,5,7,9,11,13,15};
 
-    create(A, 6);
+    create(A, 7);
 
-    cout << max(first);
+    cout << min(first);
+
     return 0;
 }
