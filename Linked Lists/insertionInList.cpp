@@ -23,11 +23,28 @@ void create(int A[], int n) {
     }
 }
 
-void insert(int pos, int x) {
-    struct Node *t, *p;
+int count(struct Node *p)
+{
+    int c = 0;
+    while (p != NULL)
+    {
+        c++;
+        p = p->next;
+    }
+    return c;
+}
+
+void insert(struct Node *p, int pos, int x) 
+{
+    if(pos < 0 || pos > count(p))
+        return;
+    
+    struct Node *t;
+
+    t = new Node;
+    t->data = x;
+
     if(pos == 0) {
-        t = new Node;
-        t->data = x;
         t->next = first;
         first = t;
     }
@@ -36,8 +53,6 @@ void insert(int pos, int x) {
         for(int i = 0; i < pos - 1 && p; i++)
             p = p->next;
         if(p) {
-            t = new Node;
-            t->data = x;
             t->next = p->next;
             p->next = t;
         }
@@ -59,7 +74,7 @@ int main() {
 
     create(A, 7);
 
-    insert(5, 10);
+    insert(first, 5, 10);
 
     display(first);
 
