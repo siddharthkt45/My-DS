@@ -80,7 +80,7 @@ int main() {
 
     display(first);
 
-    Delete(first, 4);
+    cout << "Deleted element " << Delete(first, 4) << endl;
 
     display(first);
 
