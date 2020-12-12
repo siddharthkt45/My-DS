@@ -1,3 +1,5 @@
+// Reversing Linked List by reversing links using recursion
+
 #include <iostream>
 using namespace std;
 
@@ -10,7 +12,7 @@ struct Node
 int count(struct Node *p)
 {
     int c = 0;
-    while(p) 
+    while (p)
     {
         c++;
         p = p->next;
@@ -18,7 +20,7 @@ int count(struct Node *p)
     return c;
 }
 
-void create(int A[], int n) 
+void create(int A[], int n)
 {
     int i;
     struct Node *t, *last;
@@ -27,7 +29,7 @@ void create(int A[], int n)
     first->next = NULL;
     last = first;
 
-    for(i = 1; i < n; i++)
+    for (i = 1; i < n; i++)
     {
         t = new Node;
         t->data = A[i];
@@ -39,7 +41,7 @@ void create(int A[], int n)
 
 void display(struct Node *p)
 {
-    while(p)
+    while (p)
     {
         cout << p->data << " ";
         p = p->next;
@@ -47,29 +49,20 @@ void display(struct Node *p)
     cout << endl;
 }
 
-void reverseList(struct Node *p)
+void recursiveReverse(struct Node *q, struct Node *p)
 {
-    int i = 0;
-    int n = count(first);
-    int A[n];
-
-    while(p)
+    if(p != NULL)
     {
-        A[i] = p->data;
-        p = p->next;
-        i++;
+        recursiveReverse(p, p->next);
+        p->next = q;
     }
-
-    p = first, i--;
-
-    while(p)
+    else
     {
-        p->data = A[i--];
-        p = p->next; 
+        first = q;
     }
 }
 
-int main() 
+int main()
 {
     int A[] = {2,4,6,8};
 
@@ -77,7 +70,7 @@ int main()
 
     display(first);
 
-    reverseList(first);
+    recursiveReverse(NULL, first);
 
     display(first);
 
