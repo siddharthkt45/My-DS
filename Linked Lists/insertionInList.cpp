@@ -49,7 +49,6 @@ void insert(struct Node *p, int pos, int x)
         first = t;
     }
     else if(pos > 0) {
-        p = first;
         for(int i = 0; i < pos - 1 && p; i++)
             p = p->next;
         if(p) {
