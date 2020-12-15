@@ -70,11 +70,11 @@ void display(struct Node *p)
 }
 
 int main() {
-    int A[] = {3,5,7,9,11,13,15};
+    int A[0] = {};
 
-    create(A, 7);
+    // create(A, 7);
 
-    insert(first, 5, 10);
+    insert(first, 0, 10); // creating a list using insert function
 
     display(first);
 

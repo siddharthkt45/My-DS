@@ -3,10 +3,11 @@
 #include <iostream>
 using namespace std;
 
-struct Node
+class Node
 {
-    int data;
-    struct Node *next;
+    public:
+        int data;
+        Node *next;
 } *first = NULL;
 
 int count(struct Node *p)

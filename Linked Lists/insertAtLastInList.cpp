@@ -28,6 +28,8 @@ void insertLast(int x) {
     struct Node *last = first;
     t->data = x;
     t->next = NULL;
+    while (last->next)
+        last = last->next;
     if(first == NULL)
         first = last = t;
     else {
@@ -45,10 +47,8 @@ void display(struct Node *p) {
 }
 
 int main() {
-    int A[] = {3,5,7,9,11,13,15};
-
-    create(A, 7);
-
+    int A[5];
+    
     insertLast(17);
 
     display(first);

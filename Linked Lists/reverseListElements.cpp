@@ -51,9 +51,8 @@ void display(struct Node *p)
 
 void reverseList(struct Node *p)
 {
-    int i = 0;
-    int n = count(p);
-    int A[n];
+    int *A, i = 0;
+    A = new int[count(p)];
 
     while(p)
     {
