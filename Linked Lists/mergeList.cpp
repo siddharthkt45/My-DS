@@ -1,7 +1,8 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-struct Node {
+struct Node
+{
     int data;
     struct Node *next;
 } *first = NULL, *second = NULL, *third = NULL;
@@ -56,20 +57,50 @@ void display(struct Node *p)
     cout << endl;
 }
 
-void concatList(struct Node *p, struct Node *q)
+void mergeList(struct Node *p, struct Node *q)
 {
-    third = p;
-    while (p->next != NULL)
+    struct Node *last = NULL;
+    if(p->data < q->data)
     {
+        third = last = p;
         p = p->next;
+        last->next = NULL;
     }
-    p->next = second;
+    else
+    {
+        third = last = q;
+        q = q->next;
+        last->next = NULL;
+    }
+    
+    while (p && q)
+    {
+        if(p->data < q->data)
+        {
+            last->next = p;
+            last = p;
+            p = p->next;
+            last->next = NULL;
+        }
+        else
+        {
+            last->next = q;
+            last = q;
+            q = q->next;
+            last->next = NULL;
+        }
+    }
+
+    if(p)
+        last->next = p;
+    else
+        last->next = q;
 }
 
 int main()
 {
-    int A[] = {1,2,3,4};
-    int B[] = {5,6,7};
+    int A[] = {2, 4, 6, 8};
+    int B[] = {1, 3, 7};
 
     create(A, 4);
     create2(B, 3);
@@ -77,7 +108,7 @@ int main()
     display(first);
     display(second);
 
-    concatList(first, second);
+    mergeList(first, second);
 
     display(third);
 
