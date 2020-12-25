@@ -63,7 +63,9 @@ int main()
 
     display();
 
-    printf("%d ", dequeue());
+    printf("%d\n", dequeue());
+
+    display();
 
     return 0;
 }
