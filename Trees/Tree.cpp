@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Queue.h"
+// #include "Stack.h"
 using namespace std;
 
 struct Node *root = NULL;
@@ -46,6 +47,46 @@ void createTree()
     }
 }
 
+// void IPreorder(struct Node *p)
+// {
+//     struct Stack st;
+//     createStack(&st, 100);
+//     while (p || !isEmptyStack(st))
+//     {
+//         if(p)
+//         {
+//             cout << p->data << " ";
+//             push(&st, p);
+//             p = p->lchild;
+//         }
+//         else
+//         {
+//             p = pop(&st);
+//             p = p->rchild;
+//         }
+//     }
+// }
+
+// void IInorder(struct Node *p)
+// {
+//     struct Stack st;
+//     createStack(&st, 100);
+//     while(p || !isEmptyStack(st))
+//     {
+//         if(p)
+//         {
+//             push(&st, p);
+//             p = p->lchild;
+//         }
+//         else
+//         {
+//             p = pop(&st);
+//             cout << p->data;
+//             p = p->rchild;
+//         }
+//     }
+// }
+
 void Preorder(struct Node *p)
 {
     if(p)
@@ -76,6 +117,50 @@ void Postorder(struct Node *p)
     }
 }
 
+void Levelorder(struct Node *p)
+{
+    struct Queue q;
+    create(&q, 100);
+
+    cout << root->data << " ";
+    enqueue(&q, root);
+
+    while(!isEmpty(q))
+    {
+        root = dequeue(&q);
+        if(root->lchild)
+        {
+            cout << root->lchild->data << " ";
+            enqueue(&q, root->lchild);
+        }
+        if(root->rchild)
+        {
+            cout << root->rchild->data << " ";
+            enqueue(&q, root->rchild);
+        }
+    }
+}
+
+int count(struct Node *root)
+{
+    if (root)
+        return count(root->lchild) + count(root->rchild) + 1;
+    return 0;
+}
+
+int height(struct Node *root)
+{
+    int x = 0, y = 0;
+    if (root == 0)
+        return 0;
+    x = height(root->lchild);
+    y = height(root->rchild);
+    if (x > y)
+        return x + 1;
+    else
+        return y + 1;
+}
+
 int main()
 {
     createTree();
@@ -83,6 +168,13 @@ int main()
     Preorder(root);
     printf("\nPost Order ");
     Postorder(root);
+    printf("\nLevel Order ");
+    Levelorder(root);
+    printf("\nHeight ");
+    cout << height(root) << "Count " << count(root);
+
+    // IPreorder(root);
+    // IInorder(root);
 
     return 0;
 }

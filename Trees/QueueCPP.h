@@ -3,7 +3,7 @@ using namespace std;
 
 class Node
 {
-    public:
+public:
     Node *lchild;
     int data;
     Node *rchild;
@@ -11,29 +11,29 @@ class Node
 
 class Queue
 {
-    private:
-        int size;
-        int front;
-        int rear;
-        Node **Q;
+private:
+    int size;
+    int front;
+    int rear;
+    Node **Q;
 
-    public:
-        Queue()
-        {
-            front = rear = -1;
-            size = 10;
-            Q = new Node *[size];
-        }
-        Queue(int size)
-        {
-            front = rear = -1;
-            this->size = size;
-            Q = new Node *[this->size];
-        }
-        void enqueue(Node *x);
-        Node* dequeue();
-        int isEmpty() {return front == rear;}
-        void display();
+public:
+    Queue()
+    {
+        front = rear = -1;
+        size = 10;
+        Q = new Node *[size];
+    }
+    Queue(int size)
+    {
+        front = rear = -1;
+        this->size = size;
+        Q = new Node *[this->size];
+    }
+    void enqueue(Node *x);
+    Node* dequeue();
+    int isEmpty() {return front == rear;}
+    void display();
 };
 
 void Queue::enqueue(Node* x)

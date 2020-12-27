@@ -4,25 +4,26 @@ using namespace std;
 
 class Tree
 {
-    public:
-        Node *root;
+private:
+    Node *root;
 
-        Tree()
-        {
-            root = NULL;
-        }
+public:
+    Tree()
+    {
+        root = NULL;
+    }
 
-        void createTree();
-        void Preorder() {Preorder(root);}
-        void Preorder(Node *p);
-        void Postorder() {Postorder(root);}
-        void Postorder(Node *p);
-        void Inorder() {Inorder(root);}
-        void Inorder(Node *p);
-        void Levelorder() {Levelorder(root);}
-        void Levelorder(Node *p);
-        int Height() {return Height(root);}
-        int Height(Node *root);
+    void createTree();
+    void Preorder() {Preorder(root);}
+    void Preorder(Node *p);
+    void Postorder() {Postorder(root);}
+    void Postorder(Node *p);
+    void Inorder() {Inorder(root);}
+    void Inorder(Node *p);
+    void Levelorder() {Levelorder(root);}
+    void Levelorder(Node *p);
+    int Height() {return Height(root);}
+    int Height(Node *root);
 };
 
 void Tree::createTree()
