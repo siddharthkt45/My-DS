@@ -148,17 +148,15 @@ int count(struct Node *root)
     return 0;
 }
 
-int height(struct Node *root)
+int Height(struct Node *p)
 {
-    int x = 0, y = 0;
-    if (root == 0)
+    int x, y;
+    if (p == NULL)
         return 0;
-    x = height(root->lchild);
-    y = height(root->rchild);
-    if (x > y)
-        return x + 1;
-    else
-        return y + 1;
+    x = Height(p->lchild);
+    y = Height(p->rchild);
+
+    return x > y ? x + 1 : y + 1;
 }
 
 int main()
@@ -171,7 +169,7 @@ int main()
     printf("\nLevel Order ");
     Levelorder(root);
     printf("\nHeight ");
-    cout << height(root) << "Count " << count(root);
+    cout << Height(root) << " Count " << count(root);
 
     // IPreorder(root);
     // IInorder(root);

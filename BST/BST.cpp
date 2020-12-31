@@ -41,7 +41,7 @@ void Insert(int key)
         r->rchild = p;
 }
 
-struct Node* RInsert(struct Node *p, int key)
+struct Node *RInsert(struct Node *p, int key)
 {
     struct Node *t;
     if(p == NULL)
@@ -59,7 +59,7 @@ struct Node* RInsert(struct Node *p, int key)
     return p;
 }
 
-struct Node* Search(int key)
+struct Node *Search(int key)
 {
     struct Node *t = root;
     while(t != NULL)
@@ -86,6 +86,67 @@ struct Node *RSearch(struct Node *p, int key)
         return RSearch(p->rchild, key);
 }
 
+int Height(struct Node *p)
+{
+    int x, y;
+    if(p == NULL)
+        return 0;
+    x = Height(p->lchild);
+    y = Height(p->rchild);
+
+    return x>y ? x+1 : y+1;
+}
+
+struct Node* InPre(struct Node *p)
+{
+    while (p && p->rchild)
+        p = p->rchild;
+    return p;
+}
+
+struct Node *InSucc(struct Node *p)
+{
+    while (p && p->lchild)
+        p = p->lchild;
+    return p;
+}
+
+struct Node* Delete(struct Node *p, int key)
+{
+    struct Node *q;
+
+    if(p == NULL)
+        return NULL;
+    if(p->lchild == NULL && p->rchild == NULL)
+    {
+        if(p == root)
+            root = NULL;
+        delete p;
+        return NULL;
+    }
+
+    if(key < p->data)
+        p->lchild = Delete(p->lchild, key);
+    else if(key > p->data)
+        p->rchild = Delete(p->rchild, key);
+    else
+    {
+        if(Height(p->lchild) > Height(p->rchild))
+        {
+            q = InPre(p->lchild);
+            p->data = q->data;
+            p->lchild = Delete(p->lchild, q->data);
+        }
+        else
+        {
+            q = InSucc(p->rchild);
+            p->data = q->data;
+            p->rchild = Delete(p->rchild, q->data);
+        }
+    }
+    return p;
+}
+
 void Inorder(struct Node *p)
 {
     if (p)
@@ -109,8 +170,8 @@ int main()
     // Delete(root, 30);
 
     Inorder(root);
-    printf("\n");
-
+    printf("\nHeight ");
+    cout << Height(root) << endl;
     temp = RSearch(root, 20);
     if (temp != NULL)
         printf("element %d is found\n", temp->data);
